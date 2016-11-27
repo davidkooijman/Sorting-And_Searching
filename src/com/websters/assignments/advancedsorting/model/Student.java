@@ -7,17 +7,17 @@ import java.util.Comparator;
  *  @author Ruben Koopman
  *  @see Comparator
  */
-public class Student implements Comparator<Student>{
+public class Student {
     private int studentNumber;
-    private double grade;
+    private Grade grade;
 
     /**
      * Add a new student with a studentnumber and grade
      *
      * @param studentNumber id of the student
-     * @param grade grade/ degree of the student in double format
+     * @param grade         grade/ degree of the student in double format
      */
-    public Student(int studentNumber, double grade) {
+    public Student(int studentNumber, Grade grade) {
         this.studentNumber = studentNumber;
         this.grade = grade;
     }
@@ -31,24 +31,16 @@ public class Student implements Comparator<Student>{
         this.studentNumber = studentNumber;
     }
 
-    public double getGrade() {
+    public Grade getGrade() {
         return grade;
     }
 
-    public void setGrade(int grade) {
+    public void setGrade(Grade grade) {
         this.grade = grade;
     }
 
     @Override
     public String toString() {
         return "{" + studentNumber + ", " + grade + "}";
-    }
-
-    @Override
-    public int compare(Student student1, Student student2) {
-        double studentGrade1 = student1.getGrade();
-        double studentGrade2 = student2.getGrade();
-
-        return Double.compare(studentGrade1, studentGrade2);
     }
 }

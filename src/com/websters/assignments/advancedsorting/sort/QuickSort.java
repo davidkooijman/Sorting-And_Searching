@@ -11,6 +11,9 @@ public class QuickSort {
     private ArrayList<Student> students;
     private Comparator<Student> comparer;
 
+    private static int mergeCalls = 0;
+    private static int compares = 0;
+
     public void sort(ArrayList<Student> students, Comparator<Student> comparer) {
         // check for empty or null array
         if (students ==null || students.size()==0){
@@ -33,11 +36,13 @@ public class QuickSort {
             // element then get the next element from the left list
             while (comparer.compare(students.get(i), pivot) < 0) {
                 i++;
+                compares++;
             }
             // If the current value from the right list is larger then the pivot
             // element then get the next element from the right list
             while (comparer.compare(students.get(j), pivot) > 0) {
                 j--;
+                compares++;
             }
 
             // If we have found a values in the left list which is larger then
@@ -62,9 +67,14 @@ public class QuickSort {
         Student temp = students.get(i);
         students.set(i, students.get(j));
         students.set(j,  temp);
+        mergeCalls++;
     }
 
     public ArrayList<Student> getSortedList(){
         return this.students;
+    }
+
+    public void getCounts(){
+        System.out.println("MergeCalls: " + mergeCalls + " and Compares: " + compares);
     }
 }
