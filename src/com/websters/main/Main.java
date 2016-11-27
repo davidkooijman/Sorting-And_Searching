@@ -11,15 +11,19 @@ public class Main {
     private static Random r = new Random();
 
     public static void main(String[] args) {
-        ArrayList<Student> list = new ArrayList<>();
-        int id = 500600001;
-        for (int i = 0; i < 10000; i++) {
-            list.add(new Student(id++, ((r.nextInt(10)+1))));
-        }
-        Collections.shuffle(list);
-        print(list);
+//        ArrayList<Student> list = new ArrayList<>();
+//        int id = 500600001;
+//        for (int i = 0; i < 10000; i++) {
+//            list.add(new Student(id++, ((r.nextInt(10)+1))));
+//        }
+//        Collections.shuffle(list);
+//        print(list);
 
         QuickSort quicksort = new QuickSort();
+
+        quicksort.setTest("test");
+
+        System.out.println(quicksort);
     }
 
     private static void print(ArrayList list){
