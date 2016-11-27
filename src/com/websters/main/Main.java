@@ -2,7 +2,7 @@ package com.websters.main;
 
 import java.util.*;
 
-import com.websters.assignments.advancedsorting.datastructures.Student;
+import com.websters.assignments.advancedsorting.model.Student;
 
 public class Main {
 
@@ -20,7 +20,7 @@ public class Main {
             System.out.print(i.getGrade() + ", ");
         }
 
-        Collections.sort(list, Student.StudentGradeComparator);
+        list.sort(Student.StudentGradeComparator);
 
         System.out.println();
 

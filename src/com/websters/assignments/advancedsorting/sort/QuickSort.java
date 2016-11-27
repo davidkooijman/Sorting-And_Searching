@@ -1,6 +1,6 @@
-package com.websters.assignments.advancedsorting.sortingandsearching;
+package com.websters.assignments.advancedsorting.sort;
 
-import com.websters.assignments.advancedsorting.datastructures.Student;
+import com.websters.assignments.advancedsorting.model.Student;
 
 import java.util.ArrayList;
 
