@@ -1,4 +1,4 @@
-package com.websters.assignments.advancedsorting;
+package com.websters.assignments.advancedsorting.datastructures;
 
 public class Student {
     int studentNumber;

@@ -3,7 +3,8 @@ package com.websters.main;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
-import com.websters.assignments.advancedsorting.Student;
+import com.websters.assignments.advancedsorting.datastructures.Student;
+import com.websters.assignments.advancedsorting.sortingandsearching.QuickSort;
 
 public class Main {
 
@@ -17,6 +18,8 @@ public class Main {
         }
         Collections.shuffle(list);
         print(list);
+
+        QuickSort quicksort = new QuickSort();
     }
 
     private static void print(ArrayList list){
