@@ -3,7 +3,7 @@ package com.websters.main;
 import java.util.*;
 
 import com.websters.assignments.advancedsorting.model.Student;
-import com.websters.assignments.advancedsorting.model.StudentGradeComparator;
+import com.websters.assignments.advancedsorting.comparators.StudentGradeComparator;
 import com.websters.assignments.advancedsorting.sort.QuickSort;
 
 public class Main {
