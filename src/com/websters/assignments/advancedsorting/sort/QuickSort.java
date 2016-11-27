@@ -2,7 +2,6 @@ package com.websters.assignments.advancedsorting.sort;
 
 
 import com.websters.assignments.advancedsorting.model.Student;
-import com.websters.assignments.advancedsorting.model.StudentGradeComparator;
 
 import java.util.ArrayList;
 import java.util.Comparator;
