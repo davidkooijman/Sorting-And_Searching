@@ -17,3 +17,6 @@ Sorting-And_Searching.iml
 
 #OSX Specific Files
 /DS_Store
+
+#javadoc
+/javadoc
