@@ -1,7 +1,9 @@
-package com.websters.assignments.advancedsorting.sort.v2;
+package com.hva.assignments.advancedsorting.sort.v2;
 
 
-import com.websters.assignments.advancedsorting.model.Student;
+import com.hva.analytics.RunTimer;
+import com.hva.assignments.advancedsorting.model.Student;
+import com.hva.analytics.Counter;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -11,18 +13,26 @@ public class QuickSortV2 {
     private ArrayList<Student> students;
     private Comparator<Student> comparer;
 
-    private static int mergeCalls = 0;
-    private static int compares = 0;
+    private static RunTimer runTimer;
+    private static Counter counter;
 
     public void sort(ArrayList<Student> students, Comparator<Student> comparer) {
         // check for empty or null array
         if (students ==null || students.size()==0){
             return;
         }
+
+        runTimer = new RunTimer();
+        counter = new Counter();
+
+        runTimer.startTimer();
+
         this.students = students;
         this.comparer = comparer;
         int number = students.size();
         quicksort(0, number - 1);
+
+        runTimer.endTimer();
     }
 
     private void quicksort(int low, int high) {
@@ -36,13 +46,13 @@ public class QuickSortV2 {
             // element then get the next element from the left list
             while (comparer.compare(students.get(i), pivot) < 0) {
                 i++;
-                compares++;
+                counter.addCompare();
             }
             // If the current value from the right list is larger then the pivot
             // element then get the next element from the right list
             while (comparer.compare(students.get(j), pivot) > 0) {
                 j--;
-                compares++;
+                counter.addCompare();
             }
 
             // If we have found a values in the left list which is larger then
@@ -83,14 +93,15 @@ public class QuickSortV2 {
         Student temp = students.get(i);
         students.set(i, students.get(j));
         students.set(j,  temp);
-        mergeCalls++;
+        counter.addMergeCall();
     }
 
     public ArrayList<Student> getSortedList(){
         return this.students;
     }
 
-    public void getCounts(){
-        System.out.println("MergeCalls: " + mergeCalls + " and Compares: " + compares);
+    public void getAnalytics(){
+        System.out.println(counter.getCounts());
+        System.out.println(runTimer.getRunTime());
     }
 }

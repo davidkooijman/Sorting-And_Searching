@@ -1,16 +1,14 @@
-package com.websters.main;
+package com.hva.main;
 
 import java.util.*;
 
-import com.websters.assignments.advancedsorting.model.Grade;
-import com.websters.assignments.advancedsorting.model.Student;
-import com.websters.assignments.advancedsorting.comparators.StudentGradeComparator;
-import com.websters.assignments.advancedsorting.sort.QuickSort;
-import com.websters.assignments.advancedsorting.sort.v2.QuickSortV2;
+import com.hva.assignments.advancedsorting.model.Grade;
+import com.hva.assignments.advancedsorting.model.Student;
+import com.hva.assignments.advancedsorting.comparators.StudentGradeComparator;
+import com.hva.assignments.advancedsorting.sort.QuickSort;
+import com.hva.assignments.advancedsorting.sort.v2.QuickSortV2;
 
 public class Main {
-
-    private static Random r = new Random();
     private static final int NR_OF_STUDENTS = 10000;
 
     public static void main(String[] args) {
@@ -42,7 +40,7 @@ public class Main {
 
         print(quickSort.getSortedList());
 
-        quickSort.getCounts();
+        quickSort.getAnalytics();
     }
 
     private static void quicksortV2(){
@@ -56,14 +54,16 @@ public class Main {
 
         print(quickSort.getSortedList());
 
-        quickSort.getCounts();
+        quickSort.getAnalytics();
     }
 
     private static ArrayList<Student> generateStudents(){
         ArrayList<Student> students = new ArrayList<>();
         int id = 500600001;
         for (int i = 0; i < NR_OF_STUDENTS; i++) {
-            students.add(new Student(id++, new Grade((r.nextInt(10)+1))));
+            Random generator = new Random();
+            double number = (generator.nextInt(91) + 10) / 10.0;
+            students.add(new Student(id++, new Grade(number)));
         }
 
         Collections.shuffle(students);

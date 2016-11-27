@@ -1,6 +1,4 @@
-package com.websters.assignments.advancedsorting.model;
-
-import java.util.Comparator;
+package com.hva.assignments.advancedsorting.model;
 
 /**
  * Created by David on 27-11-16.
