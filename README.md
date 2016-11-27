@@ -2,6 +2,12 @@
 
 Assignments for Sorting And Searching For The University Of Applied Science (HVA)
 
+## Educational Software
+This software is meant as educational and can be used for a baseproject.
+Blind copy is not permitted as this can lead to piracy notices from the university or other kind of school you're in.
+
+Pleace be aware of this!
+
 ## Installation
 
 This Java project is Build with Intellij By JetBrains. It is a plain Java project and can be run immediately after
