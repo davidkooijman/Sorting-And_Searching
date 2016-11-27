@@ -1,6 +1,8 @@
 package com.websters.assignments.advancedsorting.datastructures;
 
-public class Student {
+import java.util.Comparator;
+
+public class Student{
     int studentNumber;
     double grade;
 
@@ -8,6 +10,7 @@ public class Student {
         this.studentNumber = studentNumber;
         this.grade = grade;
     }
+
 
     public int getStudentNumber() {
         return studentNumber;
@@ -29,4 +32,21 @@ public class Student {
     public String toString() {
         return studentNumber + ", " + grade;
     }
+
+    public static Comparator<Student> StudentGradeComparator
+            = new Comparator<Student>() {
+
+        public int compare(Student student1, Student student2) {
+
+            double studentGrade1 = student1.getGrade();
+            double studentGrade2 = student2.getGrade();
+
+            //ascending order
+            return Double.compare(studentGrade1, studentGrade2);
+
+            //descending order
+            //return fruitName2.compareTo(fruitName1);
+        }
+
+    };
 }

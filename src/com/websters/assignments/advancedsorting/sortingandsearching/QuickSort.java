@@ -1,26 +1,38 @@
 package com.websters.assignments.advancedsorting.sortingandsearching;
 
-/**
- * Created by David on 27-11-16.
- */
+import com.websters.assignments.advancedsorting.datastructures.Student;
+
+import java.util.ArrayList;
+
+@Deprecated
 public class QuickSort {
 
-    private String test;
+    public static void qsort(ArrayList<Student> arr, int a, int b) {
+        if (a < b) {
+            int i = a, j = b;
 
-    public QuickSort(){}
+            System.out.println(i + j / 2);
 
-    public String getTest() {
-        return test;
-    }
+            double x = arr.get(i + j / 2).getGrade();
 
-    public void setTest(String test) {
-        this.test = test;
-    }
+            do {
+                while (Double.compare(arr.get(i).getGrade(), x) < 0) i++;
 
-    @Override
-    public String toString() {
-        return "QuickSort{" +
-                "test='" + test + '\'' +
-                '}';
+                while (Double.compare(x, arr.get(j).getGrade()) < 0) j--;
+
+                if (i <= j) {
+                    Student tmp = arr.get(i);
+
+                    arr.set(i, arr.get(j));
+                    arr.set(j, tmp);
+                    i++;
+                    j--;
+                }
+
+            } while (i <= j);
+
+            qsort(arr, a, j);
+            qsort(arr, i, b);
+        }
     }
 }
