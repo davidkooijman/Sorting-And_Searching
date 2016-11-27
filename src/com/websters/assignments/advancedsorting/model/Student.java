@@ -43,17 +43,4 @@ public class Student{
     public String toString() {
         return studentNumber + ", " + grade;
     }
-
-    public static Comparator<Student> StudentGradeComparator
-            = (student1, student2) -> {
-
-                double studentGrade1 = student1.getGrade();
-                double studentGrade2 = student2.getGrade();
-
-                //ascending order
-                return Double.compare(studentGrade1, studentGrade2);
-
-                //descending order
-                //return Double.compare(studentGrade2, studentGrade1);
-            };
 }
