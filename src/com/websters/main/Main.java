@@ -5,25 +5,22 @@ import java.util.*;
 import com.websters.assignments.advancedsorting.model.Student;
 import com.websters.assignments.advancedsorting.comparators.StudentGradeComparator;
 import com.websters.assignments.advancedsorting.sort.QuickSort;
+import com.websters.assignments.advancedsorting.sort.v2.QuickSortV2;
 
 public class Main {
 
     private static Random r = new Random();
+    private static final int NR_OF_STUDENTS = 40;
 
     public static void main(String[] args) {
-        ArrayList<Student> list = new ArrayList<>();
-        int id = 500600001;
-        for (int i = 0; i < 40; i++) {
-            list.add(new Student(id++, ((r.nextInt(10)+1))));
-        }
 
-        print(list);
+        System.out.println("Resultaten van studenten sorteren met een advanced sort");
+        quicksort();
 
-        QuickSort quickSort = new QuickSort();
+        System.out.println();
 
-        quickSort.sort(list, new StudentGradeComparator());
-
-        print(quickSort.students);
+        System.out.println("Verbetering toevoegen aan je gekozen algoritme");
+        quicksortV2();
     }
 
     private static void print(ArrayList<Student> list){
@@ -31,5 +28,39 @@ public class Main {
             System.out.print(i.getGrade() + ", ");
         }
         System.out.println();
+    }
+
+    private static void quicksort(){
+        ArrayList<Student> students = generateStudents();
+
+        print(students);
+
+        QuickSort quickSort = new QuickSort();
+
+        quickSort.sort(students, new StudentGradeComparator());
+
+        print(quickSort.getSortedList());
+    }
+
+    private static void quicksortV2(){
+        ArrayList<Student> students = generateStudents();
+
+        print(students);
+
+        QuickSortV2 quickSort = new QuickSortV2();
+
+        quickSort.sort(students, new StudentGradeComparator());
+
+        print(quickSort.getSortedList());
+    }
+
+    private static ArrayList<Student> generateStudents(){
+        ArrayList<Student> students = new ArrayList<>();
+        int id = 500600001;
+        for (int i = 0; i < NR_OF_STUDENTS; i++) {
+            students.add(new Student(id++, ((r.nextInt(10)+1))));
+        }
+
+        return students;
     }
 }

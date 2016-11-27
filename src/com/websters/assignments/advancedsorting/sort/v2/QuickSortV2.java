@@ -1,4 +1,4 @@
-package com.websters.assignments.advancedsorting.sort;
+package com.websters.assignments.advancedsorting.sort.v2;
 
 
 import com.websters.assignments.advancedsorting.model.Student;
@@ -6,7 +6,7 @@ import com.websters.assignments.advancedsorting.model.Student;
 import java.util.ArrayList;
 import java.util.Comparator;
 
-public class QuickSort {
+public class QuickSortV2 {
 
     private ArrayList<Student> students;
     private Comparator<Student> comparer;
@@ -25,7 +25,7 @@ public class QuickSort {
     private void quicksort(int low, int high) {
         int i = low, j = high;
         // Get the pivot element from the middle of the list
-        Student pivot = students.get(low + (high-low)/2);
+        Student pivot = median(low, high);
 
         // Divide into two lists
         while (i <= j) {
@@ -56,6 +56,22 @@ public class QuickSort {
             quicksort(low, j);
         if (i < high)
             quicksort(i, high);
+    }
+
+    public Student median(int left, int right) {
+        int center = (left + right) / 2;
+        // order left & center
+        if (comparer.compare(students.get(left), students.get(center)) > 0)
+            exchange(left, center);
+        // order left & right
+        if (comparer.compare(students.get(left), students.get(right)) > 0)
+            exchange(left, right);
+        // order center & right
+        if (comparer.compare(students.get(center), students.get(right)) > 0)
+            exchange(center, right);
+
+        exchange(center, right - 1); // put pivot on right
+        return students.get(right - 1); // return median value
     }
 
     private void exchange(int i, int j) {
