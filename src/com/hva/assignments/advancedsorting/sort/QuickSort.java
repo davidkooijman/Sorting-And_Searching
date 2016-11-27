@@ -3,7 +3,7 @@ package com.hva.assignments.advancedsorting.sort;
 
 import com.hva.analytics.Counter;
 import com.hva.assignments.advancedsorting.model.Student;
-import com.hva.analytics.RunTimer;
+import com.hva.analytics.Timer;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -13,7 +13,7 @@ public class QuickSort {
     private ArrayList<Student> students;
     private Comparator<Student> comparator;
 
-    private static RunTimer runTimer;
+    private static Timer timer;
     private static Counter counter;
 
     public void sort(ArrayList<Student> students, Comparator<Student> comparer) {
@@ -22,17 +22,17 @@ public class QuickSort {
             return;
         }
 
-        runTimer = new RunTimer();
+        timer = new Timer();
         counter = new Counter();
 
-        runTimer.startTimer();
+        timer.startTimer();
 
         this.students = students;
         this.comparator = comparer;
         int number = students.size();
         quicksort(0, number - 1);
 
-        runTimer.endTimer();
+        timer.endTimer();
     }
 
     private void quicksort(int low, int high) {
@@ -75,6 +75,6 @@ public class QuickSort {
 
     public void getAnalytics(){
         System.out.println(counter.getCounts());
-        System.out.println(runTimer.getRunTime());
+        System.out.println(timer.getRunTime());
     }
 }

@@ -1,6 +1,6 @@
 package com.hva.analytics;
 
-public class RunTimer {
+public class Timer {
     private static long startTime;
     private static long endTime;
 
