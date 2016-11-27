@@ -4,9 +4,6 @@ import com.hva.assignments.advancedsorting.model.Student;
 
 import java.util.Comparator;
 
-/**
- * Created by David on 27-11-16.
- */
 public class StudentGradeComparator implements Comparator<Student> {
 
     private String order;

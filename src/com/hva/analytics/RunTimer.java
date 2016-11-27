@@ -1,8 +1,5 @@
 package com.hva.analytics;
 
-/**
- * Created by David on 27-11-16.
- */
 public class RunTimer {
     private static long startTime;
     private static long endTime;

@@ -1,8 +1,5 @@
 package com.hva.assignments.advancedsorting.model;
 
-/**
- * Created by David on 27-11-16.
- */
 public class Grade {
     private double grade;
 
