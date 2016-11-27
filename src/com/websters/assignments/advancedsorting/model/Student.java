@@ -7,7 +7,7 @@ import java.util.Comparator;
  *  @author Ruben Koopman
  *  @see Comparator
  */
-public class Student{
+public class Student implements Comparator<Student>{
     private int studentNumber;
     private double grade;
 
@@ -41,6 +41,14 @@ public class Student{
 
     @Override
     public String toString() {
-        return studentNumber + ", " + grade;
+        return "{" + studentNumber + ", " + grade + "}";
+    }
+
+    @Override
+    public int compare(Student student1, Student student2) {
+        double studentGrade1 = student1.getGrade();
+        double studentGrade2 = student2.getGrade();
+
+        return Double.compare(studentGrade1, studentGrade2);
     }
 }

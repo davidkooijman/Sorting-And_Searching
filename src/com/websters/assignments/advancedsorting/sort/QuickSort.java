@@ -3,36 +3,62 @@ package com.websters.assignments.advancedsorting.sort;
 import com.websters.assignments.advancedsorting.model.Student;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
-@Deprecated
 public class QuickSort {
 
-    public static void qsort(ArrayList<Student> arr, int a, int b) {
-        if (a < b) {
-            int i = a, j = b;
+    public ArrayList<Student> students;
+    private Comparator<Student> comparator;
 
-            System.out.println(i + j / 2);
 
-            double x = arr.get(i + j / 2).getGrade();
 
-            do {
-                while (Double.compare(arr.get(i).getGrade(), x) < 0) i++;
+    public void sort(ArrayList<Student> students, Comparator<Student> comparator) {
 
-                while (Double.compare(x, arr.get(j).getGrade()) < 0) j--;
-
-                if (i <= j) {
-                    Student tmp = arr.get(i);
-
-                    arr.set(i, arr.get(j));
-                    arr.set(j, tmp);
-                    i++;
-                    j--;
-                }
-
-            } while (i <= j);
-
-            qsort(arr, a, j);
-            qsort(arr, i, b);
+        if (students == null || students.size() == 0) {
+            return;
         }
+
+        this.comparator = comparator;
+        this.students = students;
+//
+        int length = students.size();
+
+        System.out.println("test");
+        quickSort(0, length - 1);
+    }
+
+    private void quickSort(int low, int high) {
+        int i = low;
+        int j = high;
+
+        // pivot is middle index
+        Student pivot = students.get(low + (high - low) / 2);
+        while(i <= j){
+            while(comparator.compare(students.get(j), pivot) < 0){
+                i++;
+            }
+            while(comparator.compare(students.get(i), pivot) > 1){
+                j--;
+            }
+
+            if(i <= j){
+                swap(i,j);
+            }
+        }
+
+        if(low < j){
+            quickSort(low, j);
+        }
+
+        if(i < high){
+            quickSort(i, high);
+        }
+
+    }
+
+    private void swap(int i, int j){
+        Student temp = students.get(i);
+        students.set(i, students.get(j));
+        students.set(j, temp);
     }
 }
