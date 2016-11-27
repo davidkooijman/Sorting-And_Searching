@@ -1,10 +1,13 @@
-## Sorting And Searching Assignment
+# Sorting And Searching Assignment
 
 Assignments for Sorting And Searching For The University Of Applied Science (HVA)
 
-## License
+## Installation
 
-MIT License
+This Java project is Build with Intellij By JetBrains. It is a plain Java project and can be run immediately after
+cloning.
+
+## MIT License
 
 Copyright (c) 2016 David Kooijman
 
