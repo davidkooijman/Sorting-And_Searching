@@ -14,14 +14,17 @@ public class Main {
 
     public static void main(String[] args) {
 
-//        System.out.println("Resultaten van studenten sorteren met een advanced sort");
-//        quicksort("asc");
-//
-//        System.out.println();
-//
-//        System.out.println("Verbetering toevoegen aan je gekozen algoritme");
-//        quicksortV2("desc");
+        System.out.println("Resultaten van studenten sorteren met een advanced sort");
+        quicksort("asc");
 
+        System.out.println();
+
+        System.out.println("Verbetering toevoegen aan je gekozen algoritme");
+        quicksortV2("desc");
+
+        System.out.println();
+
+        System.out.println("Zoeken in een BST per Grade en Rank");
         binarySearchTree();
     }
 
@@ -84,10 +87,10 @@ public class Main {
 
         System.out.println();
 
-        System.out.println("Aantal cijfers Lager dan 3.2: " + bst.rank(3.2) + " cijfers");
-        System.out.println("Aantal cijfers Lager dan 5.5: " + bst.rank(5.5) + " cijfers");
-        System.out.println("Aantal cijfers Lager dan 8.1: " + bst.rank(8.1) + " cijfers");
-        System.out.println("Aantal cijfers Lager dan 10.0: " + bst.rank(10.0) + " cijfers");
+        System.out.println("Lager dan 3.2: " + bst.rank(3.2) + " cijfers");
+        System.out.println("Lager dan 5.5: " + bst.rank(5.5) + " cijfers");
+        System.out.println("Lager dan 8.1: " + bst.rank(8.1) + " cijfers");
+        System.out.println("Lager dan 10.0: " + bst.rank(10.0) + " cijfers");
     }
 
     private static ArrayList<Student> generateStudents() {
