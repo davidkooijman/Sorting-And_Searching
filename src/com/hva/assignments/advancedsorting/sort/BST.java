@@ -21,12 +21,10 @@ public class BST<Key extends Comparable<Key>, Value> {
         }
     }
 
-    // Grootte van de BST terug geven
     public int size() {
         return size(root);
     }
 
-    // Grootte van de BST terug geven
     private int size(Node x) {
         if (x == null) {
             return 0;
@@ -35,13 +33,11 @@ public class BST<Key extends Comparable<Key>, Value> {
         }
     }
 
-    // Alle studenten terug geven die een bepaald cijfer hebben
     public ArrayList<Value> get(Key key) {
         ArrayList<Value> studentnumbers = new ArrayList();
         return get(root, key, studentnumbers);
     }
 
-    // Alle studenten terug geven die een bepaald cijfer hebben
     private ArrayList<Value> get(Node x, Key key, ArrayList<Value> studentnumbers) {
         if (x == null) {
             return null;
@@ -61,12 +57,10 @@ public class BST<Key extends Comparable<Key>, Value> {
         }
     }
 
-    // Nieuwe cijfer & nummer combinatie toevoegen aan de BST
     public void put(Key key, Value val) {
         root = put(root, key, val);
     }
 
-    // Nieuwe cijfer & nummer combinatie toevoegen aan de BST
     private Node put(Node x, Key key, Value val) {
         if (x == null) {
             return new Node(key, val, 1);
@@ -84,20 +78,17 @@ public class BST<Key extends Comparable<Key>, Value> {
         return x;
     }
 
-    // Aantal behaalde cijfers ophalen dat lager ligt dan Key grade
     public int rank(Key grade) {
         this.rankCounter = 0;
         int count = rank(root, grade);
         return count;
     }
 
-    // Aantal behaalde cijfers ophalen dat lager ligt dan cijfer
     public int rank(Node root, Key grade) {
         if (root.key.compareTo(grade) < 0) {
             this.rankCounter++; // Lager cijfer gevonden
         }
 
-        // Child nodes opnieuw in rank() aanroepen
         if (root.left != null) {
             rank(root.left, grade);
         }
@@ -105,7 +96,6 @@ public class BST<Key extends Comparable<Key>, Value> {
             rank(root.right, grade);
         }
 
-        // Dubbel behaalde cijfers in rank() aanroepen
         if (root.identical != null) {
             rank(root.identical, grade);
         }

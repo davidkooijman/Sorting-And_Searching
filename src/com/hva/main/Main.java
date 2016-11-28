@@ -2,9 +2,8 @@ package com.hva.main;
 
 import java.util.*;
 
-import com.hva.assignments.advancedsorting.model.Grade;
 import com.hva.assignments.advancedsorting.model.Student;
-import com.hva.assignments.advancedsorting.comparators.StudentGradeComparator;
+import com.hva.assignments.advancedsorting.comparators.StudentComparator;
 import com.hva.assignments.advancedsorting.sort.BST;
 import com.hva.assignments.advancedsorting.sort.QuickSort;
 import com.hva.assignments.advancedsorting.sort.v2.QuickSortV2;
@@ -15,34 +14,27 @@ public class Main {
     public static void main(String[] args) {
 
         System.out.println("Resultaten van studenten sorteren met een advanced sort");
-        quicksort("asc");
+        quicksortTest();
 
         System.out.println();
 
         System.out.println("Verbetering toevoegen aan je gekozen algoritme");
-        quicksortV2("desc");
+        quicksortV2Test();
 
         System.out.println();
 
         System.out.println("Zoeken in een BST per Grade en Rank");
-        binarySearchTree();
+        bstTest();
     }
 
-    private static void print(ArrayList<Student> list) {
-        for (Student i : list) {
-            System.out.print(i.getGrade() + ", ");
-        }
-        System.out.println();
-    }
-
-    private static void quicksort(String order) {
-        ArrayList<Student> students = generateStudents();
+    private static void quicksortTest() {
+        ArrayList<Student> students = generateStudentList();
 
         print(students);
 
         QuickSort quickSort = new QuickSort();
 
-        quickSort.sort(students, new StudentGradeComparator(order));
+        quickSort.sort(students, new StudentComparator());
 
         print(quickSort.getSortedList());
 
@@ -51,14 +43,14 @@ public class Main {
         quickSort.getAnalytics();
     }
 
-    private static void quicksortV2(String order) {
-        ArrayList<Student> students = generateStudents();
+    private static void quicksortV2Test() {
+        ArrayList<Student> students = generateStudentList();
 
         print(students);
 
         QuickSortV2 quickSort = new QuickSortV2();
 
-        quickSort.sort(students, new StudentGradeComparator(order));
+        quickSort.sort(students, new StudentComparator());
 
         print(quickSort.getSortedList());
 
@@ -67,10 +59,9 @@ public class Main {
         quickSort.getAnalytics();
     }
 
-    private static void binarySearchTree() {
-        BST<Double, Integer> bst = generateBSTStudents();
+    private static void bstTest() {
+        BST<Double, Integer> bst = generateBstFromStudentList();
 
-        // Dubbele cijfers ophalen
         List studentsWithGrade = bst.get(4.6);
         System.out.println(studentsWithGrade.size() + " studenten van de " + NR_OF_STUDENTS + " hebben een 4.6");
 
@@ -83,8 +74,6 @@ public class Main {
         studentsWithGrade = bst.get(10.0);
         System.out.println(studentsWithGrade.size()+" studenten van de " + NR_OF_STUDENTS + " hebben een 10.0");
 
-        // Rank testen
-
         System.out.println();
 
         System.out.println("Lager dan 3.2: " + bst.rank(3.2) + " cijfers");
@@ -93,33 +82,40 @@ public class Main {
         System.out.println("Lager dan 10.0: " + bst.rank(10.0) + " cijfers");
     }
 
-    private static ArrayList<Student> generateStudents() {
+    private static ArrayList<Student> generateStudentList() {
         ArrayList<Student> students = new ArrayList<>();
         int id = 500600001;
         for (int i = 0; i < NR_OF_STUDENTS; i++) {
             Random generator = new Random();
             double number = (generator.nextInt(91) + 10) / 10.0;
-            students.add(new Student(id++, new Grade(number)));
+            students.add(new Student(id++, number));
         }
 
-        //add duplicate values for studentnumber order
-        students.add(new Student(500600006, new Grade(8.1)));
-        students.add(new Student(500600014, new Grade(8.1)));
-        students.add(new Student(500600023, new Grade(8.1)));
+        students.add(new Student(500600006, 8.1));
+        students.add(new Student(500600014, 8.1));
+        students.add(new Student(500600023, 8.1));
 
         Collections.shuffle(students);
         return students;
     }
 
-    private static BST<Double, Integer> generateBSTStudents() {
-        ArrayList<Student> students = generateStudents();
+    private static BST<Double, Integer> generateBstFromStudentList() {
+        ArrayList<Student> students = generateStudentList();
 
         BST<Double, Integer> bst = new BST<>();
 
         for(Student student : students){
-            bst.put(student.getGrade().getGrade(), student.getStudentNumber());
+            bst.put(student.getGrade(), student.getStudentNumber());
         }
 
         return bst;
     }
+
+    private static void print(ArrayList<Student> list) {
+        for (Student i : list) {
+            System.out.print(i.getGrade() + ", ");
+        }
+        System.out.println();
+    }
+
 }

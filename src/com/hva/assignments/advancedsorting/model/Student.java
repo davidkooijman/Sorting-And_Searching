@@ -1,12 +1,10 @@
 package com.hva.assignments.advancedsorting.model;
 
-import java.util.Comparator;
-
 public class Student {
     private int studentNumber;
-    private Grade grade;
+    private double grade;
 
-    public Student(int studentNumber, Grade grade) {
+    public Student(int studentNumber, double grade) {
         this.studentNumber = studentNumber;
         this.grade = grade;
     }
@@ -20,11 +18,11 @@ public class Student {
         this.studentNumber = studentNumber;
     }
 
-    public Grade getGrade() {
+    public double getGrade() {
         return grade;
     }
 
-    public void setGrade(Grade grade) {
+    public void setGrade(double grade) {
         this.grade = grade;
     }
 
