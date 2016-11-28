@@ -62,7 +62,7 @@ public class QuickSortV2 {
             quicksort(i, high);
     }
 
-    public Student median(int left, int right) {
+    private Student median(int left, int right) {
         int center = (left + right) / 2;
 
         // order left & center
