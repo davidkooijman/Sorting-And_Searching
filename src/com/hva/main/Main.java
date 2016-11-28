@@ -71,16 +71,16 @@ public class Main {
         BST<Double, Integer> bst = generateBSTStudents();
 
         // Dubbele cijfers ophalen
-        ArrayList studentsWithGrade = bst.getAllWithGrade(4.6);
+        List studentsWithGrade = bst.get(4.6);
         System.out.println(studentsWithGrade.size() + " studenten van de " + NR_OF_STUDENTS + " hebben een 4.6");
 
-        studentsWithGrade = bst.getAllWithGrade(6.2);
+        studentsWithGrade = bst.get(6.2);
         System.out.println(studentsWithGrade.size()+" studenten van de " + NR_OF_STUDENTS + " hebben een 6.2");
 
-        studentsWithGrade = bst.getAllWithGrade(8.2);
+        studentsWithGrade = bst.get(8.2);
         System.out.println(studentsWithGrade.size()+" studenten van de " + NR_OF_STUDENTS + " hebben een 8.2");
 
-        studentsWithGrade = bst.getAllWithGrade(10.0);
+        studentsWithGrade = bst.get(10.0);
         System.out.println(studentsWithGrade.size()+" studenten van de " + NR_OF_STUDENTS + " hebben een 10.0");
 
         // Rank testen
@@ -115,10 +115,6 @@ public class Main {
         ArrayList<Student> students = generateStudents();
 
         BST<Double, Integer> bst = new BST<>();
-
-        for (Student student : students) {
-            bst.put(student.getGrade().getGrade(), student.getStudentNumber());
-        }
 
         int id = 500600001;
         for (int i = 0; i < NR_OF_STUDENTS; i++) {

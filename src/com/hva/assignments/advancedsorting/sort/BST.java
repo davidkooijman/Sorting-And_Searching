@@ -36,21 +36,21 @@ public class BST<Key extends Comparable<Key>, Value> {
     }
 
     // Alle studenten terug geven die een bepaald cijfer hebben
-    public ArrayList<Value> getAllWithGrade(Key key) {
+    public ArrayList<Value> get(Key key) {
         ArrayList<Value> studentnumbers = new ArrayList();
-        return getAllWithGrade(root, key, studentnumbers);
+        return get(root, key, studentnumbers);
     }
 
     // Alle studenten terug geven die een bepaald cijfer hebben
-    private ArrayList<Value> getAllWithGrade(Node x, Key key, ArrayList<Value> studentnumbers) {
+    private ArrayList<Value> get(Node x, Key key, ArrayList<Value> studentnumbers) {
         if (x == null) {
             return null;
         }
         int cmp = key.compareTo(x.key);
         if (cmp < 0) {
-            return getAllWithGrade(x.left, key, studentnumbers);
+            return get(x.left, key, studentnumbers);
         } else if (cmp > 0) {
-            return getAllWithGrade(x.right, key, studentnumbers);
+            return get(x.right, key, studentnumbers);
         } else {
             studentnumbers.add(x.val);
             while (x.identical != null) {
