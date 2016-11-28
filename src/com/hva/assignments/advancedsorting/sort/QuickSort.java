@@ -49,12 +49,16 @@ public class QuickSort {
             // lijst
             while (comparator.compare(students.get(i), pivot) < 0) {
                 i++;
+
+                // tel 1 op bij aantal compares voor het berekenen van de Big-O
                 counter.addCompare();
             }
             // is het rechter object van de pivot kleiner dan de pivot, ga dan naar het volgende element in de rechter
             // lijst
             while (comparator.compare(students.get(j), pivot) > 0) {
                 j--;
+
+                // tel 1 op bij aantal compares voor het berekenen van de Big-O
                 counter.addCompare();
             }
 
@@ -76,10 +80,19 @@ public class QuickSort {
             quicksort(i, high);
     }
 
+    //De exchange wisselt de elementen op de indexen i en j
     private void exchange(int i, int j) {
+        // sla de student op index i op in een tmp
         Student temp = students.get(i);
+
+        // wissel student op index i om met j. Student i bestaat nu niet meer,  maar hebben we opgeslagen in de temp om
+        // nu te verwisselen
         students.set(i, students.get(j));
+
+        // wissel student op index j om met student i in temp
         students.set(j,  temp);
+
+        // Voeg een wissel toe aan de counter voor berekeken van de Big-O
         counter.addMergeCall();
     }
 
