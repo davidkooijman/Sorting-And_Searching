@@ -116,11 +116,8 @@ public class Main {
 
         BST<Double, Integer> bst = new BST<>();
 
-        int id = 500600001;
-        for (int i = 0; i < NR_OF_STUDENTS; i++) {
-            Random generator = new Random();
-            double number = (generator.nextInt(91) + 10) / 10.0;
-            bst.put(number, id++);
+        for(Student student : students){
+            bst.put(student.getGrade().getGrade(), student.getStudentNumber());
         }
 
         return bst;
