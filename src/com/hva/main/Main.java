@@ -9,7 +9,7 @@ import com.hva.assignments.advancedsorting.sort.QuickSort;
 import com.hva.assignments.advancedsorting.sort.v2.QuickSortV2;
 
 public class Main {
-    private static final int NR_OF_STUDENTS = 20000;
+    private static final int NR_OF_STUDENTS = 35000;
 
     public static void main(String[] args) {
 
@@ -17,14 +17,14 @@ public class Main {
         quicksortTest();
 
         System.out.println();
-
+//
         System.out.println("Verbetering toevoegen aan je gekozen algoritme");
         quicksortV2Test();
-
-        System.out.println();
-
-        System.out.println("Zoeken in een BST per Grade en Rank");
-        bstTest();
+//
+//        System.out.println();
+//
+//        System.out.println("Zoeken in een BST per Grade en Rank");
+//        bstTest();
     }
 
     private static void quicksortTest() {
@@ -62,24 +62,9 @@ public class Main {
     private static void bstTest() {
         BST<Double, Integer> bst = generateBstFromStudentList();
 
-        List studentsWithGrade = bst.get(4.6);
-        System.out.println(studentsWithGrade.size() + " studenten van de " + NR_OF_STUDENTS + " hebben een 4.6");
-
-        studentsWithGrade = bst.get(6.2);
-        System.out.println(studentsWithGrade.size()+" studenten van de " + NR_OF_STUDENTS + " hebben een 6.2");
-
-        studentsWithGrade = bst.get(8.2);
-        System.out.println(studentsWithGrade.size()+" studenten van de " + NR_OF_STUDENTS + " hebben een 8.2");
-
-        studentsWithGrade = bst.get(10.0);
-        System.out.println(studentsWithGrade.size()+" studenten van de " + NR_OF_STUDENTS + " hebben een 10.0");
-
-        System.out.println();
-
-        System.out.println("Lager dan 3.2: " + bst.rank(3.2) + " cijfers");
-        System.out.println("Lager dan 5.5: " + bst.rank(5.5) + " cijfers");
-        System.out.println("Lager dan 8.1: " + bst.rank(8.1) + " cijfers");
-        System.out.println("Lager dan 10.0: " + bst.rank(10.0) + " cijfers");
+        for (int i = 1; i <= 10; i++) {
+            System.out.println("Cijfer " + i + ": " + bst.rank((double) i));
+        }
     }
 
     private static ArrayList<Student> generateStudentList() {
@@ -91,9 +76,11 @@ public class Main {
             students.add(new Student(id++, number));
         }
 
-        students.add(new Student(500600006, 8.1));
-        students.add(new Student(500600014, 8.1));
-        students.add(new Student(500600023, 8.1));
+        int lastStudentNumber = 500600001 + students.size();
+
+        students.add(new Student(++lastStudentNumber, 8.1));
+        students.add(new Student(++lastStudentNumber, 8.1));
+        students.add(new Student(++lastStudentNumber, 8.1));
 
         Collections.shuffle(students);
         return students;
@@ -101,6 +88,8 @@ public class Main {
 
     private static BST<Double, Integer> generateBstFromStudentList() {
         ArrayList<Student> students = generateStudentList();
+
+        print(students);
 
         BST<Double, Integer> bst = new BST<>();
 
@@ -115,7 +104,7 @@ public class Main {
         for (Student i : list) {
             System.out.print(i.getGrade() + ", ");
         }
-        System.out.println();
+        System.out.println("\n");
     }
 
 }

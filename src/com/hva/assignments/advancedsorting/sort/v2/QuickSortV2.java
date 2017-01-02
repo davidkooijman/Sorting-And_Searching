@@ -37,7 +37,9 @@ public class QuickSortV2 {
 
     private void quicksort(int low, int high) {
         int i = low, j = high;
-        Student pivot = median(low, high);
+        int n = high - low + 1;
+        int mid = low + n/2;
+        Student pivot = median(low, mid, high);
 
         while (i <= j) {
             while (comparator.compare(students.get(i), pivot) < 0) {
@@ -62,21 +64,19 @@ public class QuickSortV2 {
             quicksort(i, high);
     }
 
-    private Student median(int left, int right) {
-        int center = (left + right) / 2;
+    // return the index of the median element among students.get(low), students.get(mid), and students.get(high)
+    private Student median(int i, int j, int k) {
+        return (less(students.get(i), students.get(j)) ?
+                (less(students.get(j), students.get(k)) ? students.get(j) : less(students.get(i), students.get(k)) ? students.get(k) : students.get(i)) :
+                (less(students.get(k), students.get(j)) ? students.get(j) : less(students.get(k), students.get(i)) ? students.get(k) : students.get(i)));
+    }
 
-        // order left & center
-        if (comparator.compare(students.get(left), students.get(center)) > 0)
-            exchange(left, center);
-        // order left & right
-        if (comparator.compare(students.get(left), students.get(right)) > 0)
-            exchange(left, right);
-        // order center & right
-        if (comparator.compare(students.get(center), students.get(right)) > 0)
-            exchange(center, right);
+    //Vergelijking tussen twee studenten.
+    private boolean less(Student a, Student b){
+        int compare = comparator.compare(a, b);
 
-        exchange(center, right - 1);
-        return students.get(right - 1);
+        // Geef een boolean terug adhv de vergelijking met de compare, -1 in de compare betekend a < b
+        return compare == -1;
     }
 
     private void exchange(int i, int j) {
