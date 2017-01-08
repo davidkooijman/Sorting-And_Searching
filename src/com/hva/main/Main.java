@@ -9,7 +9,7 @@ import com.hva.assignments.advancedsorting.sort.QuickSort;
 import com.hva.assignments.advancedsorting.sort.v2.QuickSortV2;
 
 public class Main {
-    private static final int NR_OF_STUDENTS = 35000;
+    private static final int NR_OF_STUDENTS = 12500;
 
     public static void main(String[] args) {
 
@@ -17,14 +17,14 @@ public class Main {
         quicksortTest();
 
         System.out.println();
-//
+
         System.out.println("Verbetering toevoegen aan je gekozen algoritme");
         quicksortV2Test();
-//
-//        System.out.println();
-//
-//        System.out.println("Zoeken in een BST per Grade en Rank");
-//        bstTest();
+
+        System.out.println();
+
+        System.out.println("Zoeken in een BST per Grade en Rank");
+        bstTest();
     }
 
     private static void quicksortTest() {

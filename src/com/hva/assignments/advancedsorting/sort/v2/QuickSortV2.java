@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 
 public class QuickSortV2 {
+    private static final int CUTOFF = 8;
 
     private ArrayList<Student> students;
     private Comparator<Student> comparator;
@@ -16,9 +17,35 @@ public class QuickSortV2 {
     private static Timer timer;
     private static Counter counter;
 
+    private int partition(int low, int high) {
+        int i = low;
+        int j = high + 1;
+        Student student = students.get(low);
+
+        while (true) {
+
+            //vind de student bij low om te swappen
+            while (less(students.get(++i), student))
+                if (i == high) break;
+
+            //vind de student bij high om te swappen
+            while (less(student, students.get(--j)))
+                if (j == low) break;
+
+            //Kijk of de indexen over elkaar heen gaan
+            if (i >= j) break;
+
+            exchange(i, j);
+        }
+
+        exchange(low, j);
+
+        return j;
+    }
+
     public void sort(ArrayList<Student> students, Comparator<Student> comparer) {
 
-        if (students ==null || students.size()==0){
+        if (students == null || students.size() == 0) {
             return;
         }
 
@@ -29,50 +56,44 @@ public class QuickSortV2 {
 
         this.students = students;
         this.comparator = comparer;
-        int number = students.size();
-        quicksort(0, number - 1);
+        sort(0, students.size() - 1);
 
         timer.endTimer();
     }
 
-    private void quicksort(int low, int high) {
-        int i = low, j = high;
+    private void sort(int low, int high) {
         int n = high - low + 1;
-        int mid = low + n/2;
-        Student pivot = median(low, mid, high);
 
-        while (i <= j) {
-            while (comparator.compare(students.get(i), pivot) < 0) {
-                i++;
-                counter.addCompare();
-            }
-            while (comparator.compare(students.get(j), pivot) > 0) {
-                j--;
-                counter.addCompare();
-            }
-
-            if (i <= j) {
-                exchange(i, j);
-                i++;
-                j--;
-            }
+        if (n <= CUTOFF) {
+            insertionSort(low, high);
+            // show(a, lo, -1, -1, hi);
+            return;
         }
 
-        if (low < j)
-            quicksort(low, j);
-        if (i < high)
-            quicksort(i, high);
+        int median = median(low, low + n / 2, high);
+        exchange(median, low);
+
+        int j = partition(low, high);
+        sort(low, j - 1);
+        sort(j+1, high);
+    }
+
+    private void insertionSort(int low, int high) {
+        for (int i = low; i <= high; i++)
+            for (int j = i; j > low && less(students.get(j), students.get(j-1)); j--)
+                exchange(j, j-1);
     }
 
     // return the index of the median element among students.get(low), students.get(mid), and students.get(high)
-    private Student median(int i, int j, int k) {
+    private int median(int i, int j, int k) {
         return (less(students.get(i), students.get(j)) ?
-                (less(students.get(j), students.get(k)) ? students.get(j) : less(students.get(i), students.get(k)) ? students.get(k) : students.get(i)) :
-                (less(students.get(k), students.get(j)) ? students.get(j) : less(students.get(k), students.get(i)) ? students.get(k) : students.get(i)));
+                (less(students.get(j), students.get(k)) ? j : less(students.get(i), students.get(k)) ? k : i) :
+                (less(students.get(k), students.get(j)) ? j : less(students.get(k), students.get(i)) ? k : i));
     }
 
     //Vergelijking tussen twee studenten.
-    private boolean less(Student a, Student b){
+    private boolean less(Student a, Student b) {
+        counter.addCompare();
         int compare = comparator.compare(a, b);
 
         // Geef een boolean terug adhv de vergelijking met de compare, -1 in de compare betekend a < b
@@ -82,15 +103,15 @@ public class QuickSortV2 {
     private void exchange(int i, int j) {
         Student temp = students.get(i);
         students.set(i, students.get(j));
-        students.set(j,  temp);
+        students.set(j, temp);
         counter.addMergeCall();
     }
 
-    public ArrayList<Student> getSortedList(){
+    public ArrayList<Student> getSortedList() {
         return this.students;
     }
 
-    public void getAnalytics(){
+    public void getAnalytics() {
         System.out.println(counter.getCounts());
         System.out.println(timer.getRunTime());
     }
