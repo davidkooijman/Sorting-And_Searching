@@ -6,7 +6,7 @@ Assignments for Sorting And Searching For The University Of Applied Science (HVA
 This software is meant as educational and can be used for a baseproject.
 Blind copy is not permitted as this can lead to piracy notices from the university or other kind of school you're in.
 
-Pleace be aware of this!
+Please be aware of this!
 
 ## Installation
 
